@@ -1,6 +1,7 @@
 # My Neovim Configuration
 
 My personal Neovim configuration.
+It's very similar with kickstart but I reorganized
 
 ## Structure
 
