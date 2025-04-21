@@ -53,3 +53,10 @@ set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic" })
 -- Quickfix
 set("n", "<C-j>", "<cmd>cnext<CR>")
 set("n", "<C-k>", "<cmd>cprev<CR>")
+
+-- Change cwd to file's dir
+set("n", "<leader>cc", function()
+	local path = vim.fn.expand("%:p:h")
+	vim.cmd("cd " .. path)
+	print("CWD: " .. vim.fn.getcwd())
+end, { desc = "Set CWD to current file and print it" })

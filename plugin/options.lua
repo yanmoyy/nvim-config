@@ -56,7 +56,6 @@ opt.confirm = true
 
 opt.smartindent = true
 
-opt.scrolloff = 8
 opt.isfname:append("@-@") -- Allow @ in filename
 
 -- opt.colorcolumn = "80"
