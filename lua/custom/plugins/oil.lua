@@ -6,10 +6,8 @@ return {
 			CustomOilBar = function()
 				local path = vim.fn.expand("%")
 				path = path:gsub("oil://", "")
-
 				return "  " .. vim.fn.fnamemodify(path, ":.")
 			end
-
 			require("oil").setup({
 				columns = { "icon" },
 				keymaps = {
@@ -30,10 +28,8 @@ return {
 					end,
 				},
 			})
-
 			-- Open parent directory in current window
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
 			-- Open parent directory in floating window
 			vim.keymap.set("n", "<space>-", require("oil").toggle_float)
 		end,
