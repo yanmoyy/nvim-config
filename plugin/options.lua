@@ -43,6 +43,7 @@ opt.shiftwidth = 4
 
 opt.more = false -- Disable --More-- prompt
 opt.foldmethod = "manual"
+opt.colorcolumn = "80"
 
 opt.title = true
 opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
