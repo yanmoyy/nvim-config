@@ -60,3 +60,6 @@ set("n", "<leader>cc", function()
 	vim.cmd("cd " .. path)
 	print("CWD: " .. vim.fn.getcwd())
 end, { desc = "Set CWD to current file and print it" })
+
+-- Remap :W to :w to avoid errors when mistyping
+vim.cmd("cnoreabbrev W w")

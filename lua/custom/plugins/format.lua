@@ -12,6 +12,7 @@ return { -- Autoformat
 			desc = "[F]ormat buffer",
 		},
 	},
+
 	opts = {
 		notify_on_error = false,
 		format_on_save = function(bufnr)

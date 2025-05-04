@@ -38,8 +38,9 @@ opt.formatoptions:remove("o") -- Don't have `o` add a comment
 opt.wrap = true
 opt.linebreak = true
 
-opt.tabstop = 4
-opt.shiftwidth = 4
+vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 opt.more = false -- Disable --More-- prompt
 opt.foldmethod = "manual"
@@ -54,8 +55,6 @@ opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 opt.confirm = true
-
-opt.smartindent = true
 
 opt.isfname:append("@-@") -- Allow @ in filename
 
