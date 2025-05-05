@@ -63,3 +63,11 @@ end, { desc = "Set CWD to current file and print it" })
 
 -- Remap :W to :w to avoid errors when mistyping
 vim.cmd("cnoreabbrev W w")
+vim.cmd("cnoreabbrev Wq wq")
+vim.cmd("cnoreabbrev WQ wq")
+
+vim.keymap.set("n", "K", function()
+	vim.lsp.buf.hover({
+		border = "rounded",
+	})
+end)

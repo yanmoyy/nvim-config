@@ -22,11 +22,11 @@ require("nordic").setup({
 		float = true,
 	},
 	-- Enable brighter float border.
-	bright_border = false,
+	bright_border = true,
 	-- Reduce the overall amount of blue in the theme (diverges from base Nord).
-	reduced_blue = true,
+	reduced_blue = false,
 	-- Swap the dark background with the normal one.
-	swap_backgrounds = true,
+	swap_backgrounds = false,
 	-- Cursorline options.  Also includes visual/selection.
 	cursorline = {
 		-- Bold font in cursorline.
@@ -40,7 +40,7 @@ require("nordic").setup({
 	},
 	noice = {
 		-- Available styles: `classic`, `flat`.
-		style = "classic",
+		style = "flat",
 	},
 	telescope = {
 		-- Available styles: `classic`, `flat`.
