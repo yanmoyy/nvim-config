@@ -53,6 +53,7 @@ end
 
 -- Mappings
 local mappings = {
+	{ "<leader>h", group = "[H]arpoon" },
 	{
 		"<leader>ha",
 		function()
