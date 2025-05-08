@@ -41,10 +41,15 @@ set("n", "<C-u>", "<C-u>zz", opts)
 set("n", "-", "<cmd>Oil<CR>", opts)
 
 -- Diagnostic keymaps
-set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic" })
-set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic" })
--- set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open float Diagnostic' })
--- set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end)
+set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end)
+
+set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open float Diagnostic" })
+set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 --  See `:help wincmd` for a list of all window commands
 -- Split window
