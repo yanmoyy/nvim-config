@@ -70,8 +70,9 @@ end, { desc = "Set CWD to current file and print it" })
 vim.cmd("cnoreabbrev W w")
 vim.cmd("cnoreabbrev Wq wq")
 vim.cmd("cnoreabbrev WQ wq")
+vim.cmd("cnoreabbrev Q q")
 
-vim.keymap.set("n", "K", function()
+set("n", "K", function()
 	vim.lsp.buf.hover({
 		border = "rounded",
 	})
