@@ -2,14 +2,14 @@ require("nordic").setup(
 	---@diagnostic disable-next-line: missing-fields
 	{
 		-- This callback can be used to override the colors used in the base palette.
-		on_palette = function(palette)
-			palette.gray2 = palette.gray4
-			palette.gray4 = palette.gray5
-		end,
-		-- This callback can be used to override the colors used in the extended palette.
-		-- after_palette = function(palette)
-		-- 	local U = require("nordic.utils")
+		-- on_palette = function(palette)
+		-- 	-- palette.gray2 = palette.gray4
 		-- end,
+		-- This callback can be used to override the colors used in the extended palette.
+		after_palette = function(palette)
+			palette.fg_sidebar = palette.gray4
+			palette.comment = palette.gray5
+		end,
 		-- -- This callback can be used to override highlights before they are applied.
 		-- on_highlight = function(highlights, palette) end,
 		-- Enable bold keywords.
@@ -38,7 +38,7 @@ require("nordic").setup(
 			-- Available styles: 'dark', 'light'.
 			theme = "light",
 			-- Blending the cursorline bg with the buffer bg.
-			blend = 0.5,
+			blend = 0.85,
 		},
 		noice = {
 			-- Available styles: `classic`, `flat`.
