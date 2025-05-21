@@ -14,6 +14,8 @@ opt.ignorecase = true
 opt.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
 opt.number = true -- Make line numbers defualt (default: false)
 opt.relativenumber = true -- Set relative numbered lines (default: false)
+opt.cursorline = true
+opt.cursorlineopt = "number"
 
 -- Configure how new splits should be opened
 opt.splitright = true
@@ -57,5 +59,3 @@ opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the
 opt.confirm = true
 
 opt.isfname:append("@-@") -- Allow @ in filename
-
--- opt.colorcolumn = "80"

@@ -45,10 +45,17 @@ return { -- Autoformat
 		formatters = {
 			sql_formatter = {
 				command = "sql-formatter",
-				args = {
-					"--config",
-					'{ "language": "postgresql", "keywordCase": "upper" }',
-				},
+				args = function()
+					local config = {
+						language = "postgresql",
+						keywordCase = "upper",
+						logicalOperatorNewline = "after",
+					}
+					return {
+						"--config",
+						vim.json.encode(config),
+					}
+				end,
 				stdin = true, -- add content not file path
 			},
 		},

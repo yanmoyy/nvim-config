@@ -30,6 +30,13 @@ return {
 			nerd_font_variant = "mono",
 		},
 
+		signature = {
+			enabled = true,
+			window = {
+				border = "rounded",
+			},
+		},
+
 		completion = {
 			menu = {
 				auto_show = true,
@@ -67,6 +74,13 @@ return {
 						end,
 					},
 				},
+			},
+		},
+		cmdline = {
+			keymap = { preset = "inherit" },
+			completion = {
+				ghost_text = { enabled = true },
+				menu = { auto_show = true },
 			},
 		},
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
