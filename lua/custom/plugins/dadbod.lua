@@ -18,9 +18,17 @@ return {
 			vim.g.db_ui_execute_on_save = 0
 			vim.keymap.set(
 				{ "n", "v" },
-				"<leader>S",
+				"<leader>de",
 				"<Plug>(DBUI_ExecuteQuery)",
-				{ noremap = true, desc = "Execute SQL query" }
+				{ noremap = true, desc = "[D]BUI [E]xecute SQL query" }
+			)
+			vim.keymap.set({ "n", "v" }, "<leader>s", "<Nop>", { noremap = true })
+			-- New keybinding for DBUIFindBuffer
+			vim.keymap.set(
+				"n",
+				"<leader>da",
+				"<cmd>DBUIFindBuffer<cr>",
+				{ noremap = true, desc = "[D]BUI [A]dd SQL buffer" }
 			)
 		end,
 	},

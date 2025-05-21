@@ -1,6 +1,5 @@
 local set = vim.keymap.set
 
-set("n", "<leader>pv", vim.cmd.Ex)
 -- Execute command
 set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
 
