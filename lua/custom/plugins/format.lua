@@ -38,11 +38,21 @@ return { -- Autoformat
 			-- Conform can also run multiple formatters sequentially
 			python = { "isort", "black" },
 			sql = { "sql_formatter" },
+			go = { "goimports" },
 			--
 			-- You can use 'stop_after_first' to run the first available formatter from the list
 			-- javascript = { "prettierd", "prettier", stop_after_first = true },
 		},
 		formatters = {
+			prettierd = {
+				prepend_args = function(_, ctx)
+					if vim.bo[ctx.buf].filetype == "markdown" then
+						return { "--prose-wrap=always", "--print-width=80" }
+					end
+					return {}
+				end,
+				stdin = true,
+			},
 			sql_formatter = {
 				command = "sql-formatter",
 				args = function()

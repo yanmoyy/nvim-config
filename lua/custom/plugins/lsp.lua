@@ -256,6 +256,7 @@ return {
 			"prettierd",
 			"black",
 			"pylint",
+			"goimports",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
