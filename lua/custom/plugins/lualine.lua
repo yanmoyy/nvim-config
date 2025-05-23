@@ -1,6 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = { "nvim-tree/nvim-web-devicons", "folke/noice.nvim" },
 	config = function()
 		require("lualine").setup({
 			options = {
@@ -25,7 +25,18 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filename" },
+				lualine_c = {
+					"filename",
+					{
+						function()
+							return require("noice").api.status.mode.get() ---@diagnostic disable-line: undefined-field
+						end,
+						cond = function()
+							return require("noice").api.status.mode.has() ---@diagnostic disable-line: undefined-field
+						end,
+						color = "WarningMsg",
+					},
+				},
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },

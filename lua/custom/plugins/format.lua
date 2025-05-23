@@ -41,6 +41,7 @@ return { -- Autoformat
 			python = { "isort", "black" },
 			sql = { "sql_formatter" },
 			go = { "goimports" },
+			gomod = { "go_mod_formatter" },
 			["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
 		},
 		formatters = {
@@ -67,6 +68,15 @@ return { -- Autoformat
 					}
 				end,
 				stdin = true, -- add content not file path
+			},
+			go_mod_formatter = {
+				command = "go",
+				args = function(_, ctx)
+					return { "mod", "edit", "-fmt", ctx.filename }
+				end,
+				-- Since go mod edit -fmt modifies the file directly, no stdin/stdout
+				stdin = false,
+				require_cwd = true, -- Ensure it runs in the project directory
 			},
 		},
 	},
