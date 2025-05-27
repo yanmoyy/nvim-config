@@ -31,6 +31,10 @@ return {
 		},
 
 		signature = {
+			trigger = {
+				enabled = true,
+				show_on_insert = true,
+			},
 			enabled = true,
 			window = {
 				border = "rounded",

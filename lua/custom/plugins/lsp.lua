@@ -102,15 +102,17 @@ return {
 		})
 
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 		local servers = {
 			bashls = {},
 			gopls = {
+				root_makers = { "go.mod", ".git" },
 				settings = {
 					gopls = {
-						usePlaceholders = true,
+						usePlaceholders = false,
+						expandWorkspaceToModule = false,
 						analyses = {
 							unusedfunc = false,
+							unusedparams = false,
 						},
 					},
 				},

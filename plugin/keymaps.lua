@@ -71,6 +71,7 @@ vim.cmd("cnoreabbrev Wq wq")
 vim.cmd("cnoreabbrev WQ wq")
 vim.cmd("cnoreabbrev Q q")
 vim.cmd("cnoreabbrev Qa qa")
+vim.cmd("cnoreabbrev E e")
 
 set("n", "K", function()
 	vim.lsp.buf.hover({

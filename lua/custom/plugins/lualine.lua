@@ -28,11 +28,12 @@ return {
 				lualine_c = {
 					"filename",
 					{
+						---@diagnostic disable: undefined-field
 						function()
-							return require("noice").api.status.mode.get() ---@diagnostic disable-line: undefined-field
+							return require("noice").api.status.mode.get()
 						end,
 						cond = function()
-							return require("noice").api.status.mode.has() ---@diagnostic disable-line: undefined-field
+							return require("noice").api.status.mode.has()
 						end,
 						color = "WarningMsg",
 					},
