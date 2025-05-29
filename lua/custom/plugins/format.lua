@@ -78,6 +78,13 @@ return { -- Autoformat
 				stdin = false,
 				require_cwd = true, -- Ensure it runs in the project directory
 			},
+			injected = {
+				options = {
+					lang_to_formatters = {
+						go = { "gofumpt" },
+					},
+				},
+			},
 		},
 	},
 }

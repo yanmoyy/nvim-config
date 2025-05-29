@@ -110,6 +110,7 @@ return {
 					gopls = {
 						usePlaceholders = false,
 						expandWorkspaceToModule = false,
+						gofumpt = true,
 						analyses = {
 							unusedfunc = false,
 							unusedparams = false,
@@ -117,6 +118,7 @@ return {
 					},
 				},
 			},
+			ts_ls = {},
 			pyright = {
 				settings = {
 					python = {
@@ -144,11 +146,9 @@ return {
 			"sql-formatter",
 			"isort",
 			"debugpy",
-			"markdownlint",
 			"prettierd",
 			"black",
 			"pylint",
-			"goimports",
 			"golangci-lint",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

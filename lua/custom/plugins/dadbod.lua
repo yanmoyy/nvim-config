@@ -17,7 +17,7 @@ return {
 			vim.g.db_ui_execute_on_save = 0
 			vim.keymap.set(
 				{ "n", "v" },
-				"<leader>dx",
+				"<leader>de",
 				"<Plug>(DBUI_ExecuteQuery)",
 				{ noremap = true, desc = "[D]BUI [E]xecute SQL query" }
 			)
