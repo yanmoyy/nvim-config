@@ -103,22 +103,31 @@ return {
 
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local servers = {
+			--WEB...
+			html = {},
+			htmx = {},
+			cssls = {},
+			ts_ls = {},
+
+			--Good Times...
 			bashls = {},
+			dockerls = {},
 			gopls = {
-				root_makers = { "go.mod", ".git" },
+				root_markers = { "go.mod", ".git" },
 				settings = {
 					gopls = {
 						usePlaceholders = false,
 						expandWorkspaceToModule = false,
 						gofumpt = true,
+						staticcheck = false,
 						analyses = {
 							unusedfunc = false,
 							unusedparams = false,
+							unreachable = false,
 						},
 					},
 				},
 			},
-			ts_ls = {},
 			pyright = {
 				settings = {
 					python = {
@@ -150,6 +159,7 @@ return {
 			"black",
 			"pylint",
 			"golangci-lint",
+			"hadolint",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		require("mason-lspconfig").setup({
@@ -160,6 +170,7 @@ return {
 
 		for server_name, server_config in pairs(servers) do
 			local config = vim.tbl_deep_extend("force", { capabilities = capabilities }, server_config)
+			vim.lsp.enable(server_name)
 			vim.lsp.config(server_name, config)
 		end
 	end,

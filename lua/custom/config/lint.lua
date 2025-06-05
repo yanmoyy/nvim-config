@@ -1,12 +1,22 @@
+vim.filetype.add({
+	pattern = {
+		[".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
+	},
+})
 local lint = require("lint")
+
 lint.linters_by_ft = {
 	go = { "golangcilint" },
+	dockerfile = { "hadolint" },
+	html = { "djlint" },
+	["yaml.github"] = { "actionlint" },
 }
 
 local goci = lint.linters.golangcilint
 
 local additional_args = {
 	"--disable=errcheck",
+	"--enable=gosec",
 }
 goci.args = vim.list_extend(goci.args, additional_args)
 

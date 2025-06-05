@@ -35,7 +35,8 @@ return { -- Autoformat
 			json = { "prettierd" },
 			javascript = { "prettierd" },
 			yaml = { "prettierd" },
-			html = { "prettierd" },
+			css = { "prettierd" },
+			html = { "djlint" },
 			sh = { "shfmt" },
 			-- Conform can also run multiple formatters sequentially
 			python = { "isort", "black" },
@@ -45,12 +46,19 @@ return { -- Autoformat
 			["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
 		},
 		formatters = {
+			djlint = {
+				prepend_args = {
+					"--line-break-after-multiline-tag",
+					"--max-blank-lines=1",
+				},
+				stdin = true,
+			},
 			prettierd = {
 				prepend_args = function(_, ctx)
 					if vim.bo[ctx.buf].filetype == "markdown" then
 						return { "--prose-wrap=always", "--print-width=80" }
 					end
-					return {}
+					return { "--tab-width=4", "--use-tabs=false" }
 				end,
 				stdin = true,
 			},

@@ -4,6 +4,7 @@ require("nvim-treesitter.configs").setup({
 		"json",
 		"go",
 		"sql",
+		"dockerfile",
 		"python",
 		"bash",
 		"c",
