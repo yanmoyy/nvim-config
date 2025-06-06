@@ -6,6 +6,6 @@ return { -- Highlight, edit, and navigate code
 	build = ":TSUpdate",
 	main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	config = function()
-		require("custom.config.tresitter")
+		require("custom.config.treesitter")
 	end,
 }

@@ -122,7 +122,6 @@ return {
 						staticcheck = false,
 						analyses = {
 							unusedfunc = false,
-							unusedparams = false,
 							unreachable = false,
 						},
 					},
