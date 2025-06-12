@@ -29,6 +29,17 @@ require("telescope").setup({
 	--   },
 	-- },
 	-- pickers = {}
+	pickers = {
+		buffers = {
+			show_all_buffers = true,
+			sort_mru = true,
+			mappings = {
+				i = {
+					["<c-d>"] = "delete_buffer",
+				},
+			},
+		},
+	},
 	extensions = {
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown(),
