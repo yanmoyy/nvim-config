@@ -58,12 +58,9 @@ return {
 				auto_show = true,
 				window = { border = "rounded" },
 			},
-			-- sources = {
-			-- 	default = { "lsp", "path", "snippets", "buffer" },
-			-- },
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "snippets", "path", "dadbod", "buffer" },
 			per_filetype = {
 				sql = { "dadbod", "snippets", "buffer" },
 			},
