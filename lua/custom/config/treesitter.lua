@@ -21,7 +21,6 @@ require("nvim-treesitter.configs").setup({
 	auto_install = true,
 	highlight = {
 		enable = true,
-		disable = { "csv" },
 		-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
 		--  If you are experiencing weird indenting issues, add the language to
 		--  the list of additional_vim_regex_highlighting and disabled languages for indent.
@@ -59,3 +58,6 @@ local target_langs = {
 	"sql",
 }
 set_injections("bash", bash_format, target_langs)
+
+-- set parser to env filetype
+vim.treesitter.language.register("bash", "env")

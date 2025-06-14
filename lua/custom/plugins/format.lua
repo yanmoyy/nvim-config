@@ -36,6 +36,7 @@ return { -- Autoformat
 				css = { "prettierd" },
 				html = { "djlint" },
 				sh = { "shfmt" },
+				env = { "shfmt" },
 				-- Conform can also run multiple formatters sequentially
 				python = { "isort", "black" },
 				sql = { "sql_formatter" },

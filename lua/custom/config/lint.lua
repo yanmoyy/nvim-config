@@ -1,8 +1,3 @@
-vim.filetype.add({
-	pattern = {
-		[".*/%.github[%w/]+workflows[%w/]+.*%.ya?ml"] = "yaml.github",
-	},
-})
 local lint = require("lint")
 
 lint.linters_by_ft = {
