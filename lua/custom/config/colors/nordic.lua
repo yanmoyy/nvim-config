@@ -1,10 +1,6 @@
 require("nordic").setup(
 	---@diagnostic disable-next-line: missing-fields
 	{
-		-- This callback can be used to override the colors used in the base palette.
-		on_palette = function(palette)
-			palette.black2 = palette.black0
-		end,
 		-- This callback can be used to override the colors used in the extended palette.
 		after_palette = function(palette)
 			palette.fg_sidebar = palette.gray4
