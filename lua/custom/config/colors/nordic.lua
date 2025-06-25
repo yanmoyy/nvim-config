@@ -3,8 +3,9 @@ require("nordic").setup(
 	{
 		-- This callback can be used to override the colors used in the extended palette.
 		after_palette = function(palette)
+			local U = require("nordic.utils")
 			palette.fg_sidebar = palette.gray4
-			palette.comment = palette.gray5
+			palette.comment = U.blend(palette.fg, palette.gray5, 0.1)
 		end,
 		-- -- This callback can be used to override highlights before they are applied.
 		-- on_highlight = function(highlights, palette) end,
