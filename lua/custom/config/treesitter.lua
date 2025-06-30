@@ -45,6 +45,19 @@ local bash_format = [[
     )
   )
 ]]
+
+local go_format = [[
+(const_spec
+	name: (identifier)
+ 	.
+ 	(comment) @comment (#eq? @comment "/*%s*/")
+ 	.
+	value: (expression_list
+		(raw_string_literal
+			(raw_string_literal_content) @injection.content
+				(#set! injection.language "%s")
+				)))
+]]
 local function set_injections(base_lang, format_string, target_langs)
 	local combined_query = ""
 	for _, lang in ipairs(target_langs) do
@@ -53,11 +66,8 @@ local function set_injections(base_lang, format_string, target_langs)
 	tsq.set(base_lang, "injections", combined_query)
 end
 
-local target_langs = {
-	"json",
-	"sql",
-}
-set_injections("bash", bash_format, target_langs)
+set_injections("bash", bash_format, { "json", "sql" })
+set_injections("go", go_format, { "html", "json" })
 
 -- set parser to env filetype
 vim.treesitter.language.register("bash", "env")
