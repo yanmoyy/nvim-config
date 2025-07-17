@@ -10,9 +10,9 @@ lint.linters_by_ft = {
 local goci = lint.linters.golangcilint
 
 local additional_args = {
-	"--disable=errcheck",
 	"--enable=gosec",
 }
+
 goci.args = vim.list_extend(goci.args, additional_args)
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

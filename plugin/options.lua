@@ -36,7 +36,7 @@ opt.breakindent = true -- Enable break indent
 opt.updatetime = 250 -- Decrease update time
 opt.timeoutlen = 300 -- Decrease mapped sequence wait time
 
-opt.formatoptions:remove("o") -- Don't have `o` add a comment
+vim.cmd([[autocmd FileType * set formatoptions-=o]]) -- Don't have `o` add a comment
 opt.wrap = true
 opt.linebreak = true
 
