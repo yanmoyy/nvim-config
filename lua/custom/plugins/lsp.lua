@@ -42,18 +42,6 @@ return {
 					client
 					and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 				then
-					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
-					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-						buffer = event.buf,
-						group = highlight_augroup,
-						callback = vim.lsp.buf.document_highlight,
-					})
-
-					vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-						buffer = event.buf,
-						group = highlight_augroup,
-						callback = vim.lsp.buf.clear_references,
-					})
 					vim.api.nvim_create_autocmd("LspDetach", {
 						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
 						callback = function(event2)
@@ -104,13 +92,13 @@ return {
 		local servers = {
 			--WEB...
 			html = {},
-			htmx = {},
 			cssls = {},
 			ts_ls = {},
 
 			--Good Times...
 			bashls = {},
 			dockerls = {},
+			docker_compose_language_service = {},
 			gopls = {
 				root_markers = { "go.mod", ".git" },
 				settings = {
@@ -130,7 +118,7 @@ return {
 				settings = {
 					python = {
 						analysis = {
-							typeCheckingMode = "off",
+							-- typeCheckingMode = "off",
 						},
 					},
 				},
@@ -142,6 +130,28 @@ return {
 							callSnippet = "Replace",
 						},
 						--	diagnostics = { disable = { "missing-fields" } },
+					},
+				},
+			},
+			jsonls = {
+				filetypes = { "json", "jsonc" },
+				settings = {
+					json = {
+						-- Schemas https://www.schemastore.org
+						schemas = {
+							{
+								fileMatch = { "package.json" },
+								url = "https://json.schemastore.org/package.json",
+							},
+							{
+								fileMatch = { "tsconfig*.json" },
+								url = "https://json.schemastore.org/tsconfig.json",
+							},
+							{
+								fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
+								url = "https://json.schemastore.org/babelrc.json",
+							},
+						},
 					},
 				},
 			},
@@ -157,6 +167,7 @@ return {
 			"black",
 			"pylint",
 			"golangci-lint",
+			"goimports",
 			"hadolint",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

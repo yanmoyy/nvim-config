@@ -31,7 +31,10 @@ return { -- Autoformat
 				lua = { "stylua" },
 				markdown = { "prettierd" },
 				json = { "prettierd" },
+				jsonc = { "prettierd" },
+				typescript = { "prettierd" },
 				javascript = { "prettierd" },
+				graphql = { "prettierd" },
 				yaml = { "prettierd" },
 				css = { "prettierd" },
 				html = { "djlint" },
@@ -57,6 +60,9 @@ return { -- Autoformat
 						local filetype = vim.bo[ctx.buf].filetype
 						if filetype == "markdown" then
 							return { "--prose-wrap=always", "--print-width=80" }
+						end
+						if filetype == "json" or filetype == "jsonc" or filetype == "graphql" then
+							return { "--tab-width=2" }
 						end
 						if filetype == "yaml" then
 							return {}
@@ -93,6 +99,7 @@ return { -- Autoformat
 					options = {
 						lang_to_formatters = {
 							go = { "gofumpt" },
+							sql = {},
 						},
 					},
 				},

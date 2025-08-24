@@ -14,6 +14,7 @@ require("nvim-treesitter.configs").setup({
 		"luadoc",
 		"markdown",
 		"markdown_inline",
+		"graphql",
 		"query",
 		"vim",
 		"vimdoc",
@@ -67,7 +68,7 @@ local function set_injections(base_lang, format_string, target_langs)
 end
 
 set_injections("bash", bash_format, { "json", "sql" })
-set_injections("go", go_format, { "html", "json" })
+set_injections("go", go_format, { "html", "json", "sql", "graphql" })
 
 -- set parser to env filetype
 vim.treesitter.language.register("bash", "env")

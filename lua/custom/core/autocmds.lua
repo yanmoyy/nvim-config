@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown", "sql" },
+	pattern = { "markdown", "sql", "json", "jsonc", "yaml" },
 	callback = function()
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.tabstop = 2
