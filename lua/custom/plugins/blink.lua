@@ -4,7 +4,6 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 	},
-
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
 	-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -31,17 +30,23 @@ return {
 		},
 
 		signature = {
+			enabled = true,
 			trigger = {
 				enabled = true,
 				show_on_insert = true,
 			},
-			enabled = true,
 			window = {
 				border = "rounded",
 			},
 		},
 
 		completion = {
+			accept = {
+				auto_brackets = {
+					enabled = true,
+					default_brackets = { "(", ")" },
+				},
+			},
 			menu = {
 				auto_show = true,
 				border = "rounded",

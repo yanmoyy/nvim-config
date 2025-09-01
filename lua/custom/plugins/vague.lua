@@ -63,7 +63,11 @@ return {
 			},
 
 			-- Override highlights or add new highlights
-			on_highlights = function(highlights, colors) end,
+			on_highlights = function(highlights, colors)
+				highlights.Visual = {
+					bg = colors.visual, -- Use the defined visual color for background (#333738)
+				}
+			end,
 
 			-- Override colors
 			colors = {
