@@ -50,6 +50,19 @@ end)
 set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open float Diagnostic" })
 set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+-- Toggle Diagnostics
+local diagnostics_active = true
+local toggle_diagnostics = function()
+	diagnostics_active = not diagnostics_active
+	if diagnostics_active then
+		vim.diagnostic.show()
+	else
+		vim.diagnostic.hide()
+	end
+end
+
+vim.keymap.set("n", "<leader>td", toggle_diagnostics, { desc = "[T]oggle [D]iagnostic" })
+
 --  See `:help wincmd` for a list of all window commands
 -- Split window
 -- C-w (q, s, v)

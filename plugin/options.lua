@@ -59,3 +59,6 @@ opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the
 opt.confirm = true
 
 opt.isfname:append("@-@") -- Allow @ in filename
+
+vim.o.list = false
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }

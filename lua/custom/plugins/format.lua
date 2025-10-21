@@ -36,6 +36,7 @@ return { -- Autoformat
 				javascript = { "prettierd" },
 				graphql = { "prettierd" },
 				yaml = { "prettierd" },
+				["yaml.*"] = { "prettiered" },
 				css = { "prettierd" },
 				html = { "djlint" },
 				sh = { "shfmt" },
@@ -61,11 +62,13 @@ return { -- Autoformat
 						if filetype == "markdown" then
 							return { "--prose-wrap=always", "--print-width=80" }
 						end
-						if filetype == "json" or filetype == "jsonc" or filetype == "graphql" then
+						if
+							vim.tbl_contains(
+								{ "json", "jsonc", "graphql", "yaml", "yaml.github", "yaml.docker-compose" },
+								filetype
+							)
+						then
 							return { "--tab-width=2" }
-						end
-						if filetype == "yaml" then
-							return {}
 						end
 						return { "--tab-width=4" }
 					end,

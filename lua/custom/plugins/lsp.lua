@@ -37,6 +37,19 @@ return {
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+				-- Toggle Diagnostics
+				local diagnostics_active = true
+				local toggle_diagnostics = function()
+					diagnostics_active = not diagnostics_active
+					if diagnostics_active then
+						vim.diagnostic.show()
+					else
+						vim.diagnostic.hide()
+					end
+				end
+
+				vim.keymap.set("n", "<leader>dt", toggle_diagnostics)
+
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 
 				if client then
