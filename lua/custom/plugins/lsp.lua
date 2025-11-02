@@ -38,17 +38,11 @@ return {
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				-- Toggle Diagnostics
-				local diagnostics_active = true
 				local toggle_diagnostics = function()
-					diagnostics_active = not diagnostics_active
-					if diagnostics_active then
-						vim.diagnostic.show()
-					else
-						vim.diagnostic.hide()
-					end
+					vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 				end
 
-				vim.keymap.set("n", "<leader>dt", toggle_diagnostics)
+				vim.keymap.set("n", "<leader>td", toggle_diagnostics, { desc = "[T]oggle [D]iagnostic" })
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 
