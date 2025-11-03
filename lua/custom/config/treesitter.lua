@@ -17,6 +17,8 @@ require("nvim-treesitter.configs").setup({
 		"query",
 		"vim",
 		"vimdoc",
+		"c_sharp",
+		"xml",
 	},
 	auto_install = true,
 	highlight = {
@@ -72,3 +74,4 @@ set_injections("go", go_format, { "html", "json", "sql", "graphql" })
 
 -- set parser to env filetype
 vim.treesitter.language.register("bash", "env")
+vim.treesitter.language.register("xml", "csproj")

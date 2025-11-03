@@ -28,6 +28,8 @@ return { -- Autoformat
 			end,
 			notify_on_error = false,
 			formatters_by_ft = {
+				cs = { "csharpier" },
+				csproj = { "csharpier" },
 				lua = { "stylua" },
 				markdown = { "prettierd" },
 				json = { "prettierd" },

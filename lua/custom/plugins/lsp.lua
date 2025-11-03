@@ -20,6 +20,12 @@ return {
 		"saghen/blink.cmp",
 	},
 	config = function()
+		require("mason").setup({
+			registries = {
+				"github:mason-org/mason-registry",
+				"github:Crashdummyy/mason-registry",
+			},
+		})
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
@@ -88,6 +94,9 @@ return {
 			cssls = {},
 			ts_ls = {},
 
+			--C#...
+			roslyn = {},
+
 			--Good Times...
 			bashls = {},
 			dockerls = {},
@@ -152,6 +161,8 @@ return {
 
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
+			"csharpier",
+			"netcoredbg",
 			"stylua", -- Used to format Lua code
 			"sql-formatter",
 			"isort",
