@@ -13,5 +13,8 @@ return {
 		vim.keymap.set("n", "<leader>gp", "<cmd>Git push<CR>", {
 			desc = "[G]it [P]ush",
 		})
+		vim.keymap.set("n", "<leader>gr", "<cmd>Git reset<CR>", {
+			desc = "[G]it [R]eset",
+		})
 	end,
 }
