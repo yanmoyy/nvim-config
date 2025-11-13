@@ -75,7 +75,7 @@ return {
 				fg = "#cdcdcd",
 				floatBorder = "#878787",
 				line = "#252530",
-				comment = "#606079",
+				comment = "#717190",
 				builtin = "#b4d4cf",
 				func = "#c48282",
 				string = "#e8b589",
