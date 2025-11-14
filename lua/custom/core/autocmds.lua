@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "cs" },
 	callback = function()
-		vim.api.nvim_clear_autocmds({
+		pcall(vim.api.nvim_clear_autocmds, {
 			group = "noice_lsp_progress",
 			event = "LspProgress",
 			pattern = "*",

@@ -1,6 +1,7 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	enabled = true,
 	opts = {
 		-- add any options here
 	},
@@ -26,10 +27,21 @@ return {
 					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 				},
 				hover = {
-					enabled = false,
+					enabled = true,
 				},
 				signature = {
 					enabled = false,
+				},
+				documentation = {
+					view = "hover",
+					---@type NoiceViewOptions
+					opts = {
+						lang = "markdown",
+						replace = true,
+						render = "plain",
+						format = { "{message}" },
+						win_options = { concealcursor = "n", conceallevel = 3 },
+					},
 				},
 			},
 			-- you can enable a preset for easier configuration
@@ -38,9 +50,9 @@ return {
 				command_palette = false, -- position the cmdline and popupmenu together
 				long_message_to_split = true, -- long messages will be sent to a split
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false, -- add a border to hover docs and signature help
+				lsp_doc_border = true, -- add a border to hover docs and signature help
 			},
 		})
-		vim.keymap.set("n", "<leader>tn", "<cmd>NoiceDismiss<CR>", { desc = "[T]oggle [N]oice" })
+		vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "[N]oice [D]ismiss" })
 	end,
 }
