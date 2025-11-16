@@ -25,6 +25,10 @@ return {
 		"leoluz/nvim-dap-go",
 		"mfussenegger/nvim-dap-python",
 		"nicholasmata/nvim-dap-cs",
+		{
+			"Cliffback/netcoredbg-macOS-arm64.nvim",
+			cond = vim.uv.os_uname().sysname == "Darwin",
+		},
 	},
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
@@ -162,6 +166,12 @@ return {
 			},
 		})
 		require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
-		require("dap-cs").setup()
+
+		-- if macOS, use netcoredbg-macOS-arm64
+		if vim.uv.os_uname().sysname == "Darwin" then
+			require("netcoredbg-macOS-arm64").setup()
+		else
+			require("dap-cs").setup()
+		end
 	end,
 }
