@@ -15,7 +15,7 @@ return { -- Autoformat
 	config = function()
 		require("conform").setup({
 			format_on_save = function(bufnr)
-				local disable_filetypes = { c = true, cpp = true }
+				local disable_filetypes = { cpp = true }
 				if
 					vim.g.disable_autoformat
 					or vim.b[bufnr].disable_autoformat
@@ -28,6 +28,7 @@ return { -- Autoformat
 			end,
 			notify_on_error = false,
 			formatters_by_ft = {
+				c = { "clang_format" },
 				cs = { "csharpier" },
 				csproj = { "csharpier" },
 				lua = { "stylua" },
@@ -38,7 +39,7 @@ return { -- Autoformat
 				javascript = { "prettierd" },
 				graphql = { "prettierd" },
 				yaml = { "prettierd" },
-				["yaml.*"] = { "prettiered" },
+				["yaml.*"] = { "prettierd" },
 				css = { "prettierd" },
 				html = { "djlint" },
 				sh = { "shfmt" },
@@ -51,6 +52,11 @@ return { -- Autoformat
 				["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
 			},
 			formatters = {
+				clang_format = {
+					command = "clang-format",
+					args = { "--style={BasedOnStyle: WebKit, IndentWidth: 4}" },
+					stdin = true,
+				},
 				djlint = {
 					prepend_args = {
 						"--line-break-after-multiline-tag",
@@ -62,7 +68,7 @@ return { -- Autoformat
 					prepend_args = function(_, ctx)
 						local filetype = vim.bo[ctx.buf].filetype
 						if filetype == "markdown" then
-							return { "--prose-wrap=always", "--print-width=80" }
+							return { "--prose-wrap=always", "--print-width=100" }
 						end
 						if
 							vim.tbl_contains(
