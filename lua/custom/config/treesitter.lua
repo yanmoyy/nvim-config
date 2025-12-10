@@ -61,6 +61,20 @@ local go_format = [[
 				(#set! injection.language "%s")
 				)))
 ]]
+
+local python_format = [[
+
+(
+ (comment) @preceder (#eq? @preceder "# language=%s")
+ .
+ (expression_statement
+   (assignment
+	 right: (string
+			  (string_content) @injection.content
+			  (#set! injection.language "%s")
+			  )))
+ )
+]]
 local function set_injections(base_lang, format_string, target_langs)
 	local combined_query = ""
 	for _, lang in ipairs(target_langs) do
@@ -71,6 +85,7 @@ end
 
 set_injections("bash", bash_format, { "json", "sql" })
 set_injections("go", go_format, { "html", "json", "sql", "graphql" })
+set_injections("python", python_format, { "sql" })
 
 -- set parser to env filetype
 vim.treesitter.language.register("bash", "env")
