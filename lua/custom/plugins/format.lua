@@ -111,6 +111,7 @@ return { -- Autoformat
 						lang_to_formatters = {
 							go = { "gofumpt" },
 							sql = {},
+							markdown = {},
 						},
 					},
 				},

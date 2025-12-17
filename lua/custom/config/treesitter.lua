@@ -62,21 +62,36 @@ local go_format = [[
 				)))
 ]]
 
-local python_format = [[
-
+local python_dynamic_format = [[
 (
- (comment) @preceder (#eq? @preceder "# language=%s")
- .
- (expression_statement
-   (assignment
-	 right: (string
+  (comment) @preceder (#eq? @preceder "# language=%s")
+  .
+  (expression_statement
+    (assignment
+	   right: (string
 			  (string_content) @injection.content
-			  (#set! injection.language "%s")
-			  )))
- )
+			  (#set! injection.language "%s"))
+	)
+  )
+)
+]]
+
+local python_markdown_injection = [[
+(
+  (comment) @md_marker
+  (#lua-match? @md_marker "^# %%%% %[markdown%]$")
+  .
+  (expression_statement
+    (string (string_content) @injection.content)
+    (#set! injection.language "markdown")
+  )
+)
 ]]
 local function set_injections(base_lang, format_string, target_langs)
 	local combined_query = ""
+	if base_lang == "python" then
+		combined_query = python_markdown_injection
+	end
 	for _, lang in ipairs(target_langs) do
 		combined_query = combined_query .. string.format(format_string, lang, lang)
 	end
@@ -85,7 +100,7 @@ end
 
 set_injections("bash", bash_format, { "json", "sql" })
 set_injections("go", go_format, { "html", "json", "sql", "graphql" })
-set_injections("python", python_format, { "sql" })
+set_injections("python", python_dynamic_format, { "sql" })
 
 -- set parser to env filetype
 vim.treesitter.language.register("bash", "env")
