@@ -67,12 +67,9 @@ return { -- Autoformat
 				prettierd = {
 					prepend_args = function(_, ctx)
 						local filetype = vim.bo[ctx.buf].filetype
-						if filetype == "markdown" then
-							return { "--prose-wrap=always", "--print-width=100" }
-						end
 						if
 							vim.tbl_contains(
-								{ "json", "jsonc", "graphql", "yaml", "yaml.github", "yaml.docker-compose" },
+								{ "json", "jsonc", "graphql", "yaml", "yaml.github", "yaml.docker-compose", "markdown" },
 								filetype
 							)
 						then

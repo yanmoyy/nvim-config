@@ -117,11 +117,11 @@ return {
 					},
 				},
 			},
-			pyright = {
+			basedpyright = {
 				settings = {
-					python = {
+					basedpyright = {
 						analysis = {
-							-- typeCheckingMode = "off",
+							typeCheckingMode = "basic",
 						},
 					},
 				},
