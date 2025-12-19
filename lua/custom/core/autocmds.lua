@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			vim.api.nvim_put(lines, "l", true, true)
 			-- Move cursor inside the triple quotes, ready to type
 			vim.cmd("normal! k")
+			vim.cmd("startinsert")
 		end, { desc = "[J]upyter [M]arkdown" })
 
 		vim.keymap.set("n", "<leader>ja", "o# %%<CR>", { desc = "[J]upyter [A]ppend" })
