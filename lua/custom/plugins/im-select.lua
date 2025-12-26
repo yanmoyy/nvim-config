@@ -2,6 +2,7 @@ return {
 	"keaising/im-select.nvim",
 	enabled = true,
 	config = function()
+		local is_mac = vim.fn.has("mac") == 1
 		require("im_select").setup({
 			-- IM will be set to `default_im_select` in `normal` mode
 			-- For Windows/WSL, default: "1033", aka: English US Keyboard
@@ -11,7 +12,7 @@ return {
 			--               "1" for Fcitx
 			--               "xkb:us::eng" for ibus
 			-- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
-			default_im_select = "1033",
+			default_im_select = is_mac and "com.apple.keylayout.ABC" or "1033",
 
 			-- Can be binary's name, binary's full path, or a table, e.g. 'im-select',
 			-- '/usr/local/bin/im-select' for binary without extra arguments,
@@ -19,7 +20,7 @@ return {
 			-- For Windows/WSL, default: "im-select.exe"
 			-- For macOS, default: "macism"
 			-- For Linux, default: "fcitx5-remote" or "fcitx-remote" or "ibus"
-			default_command = "im-select", -- make alias for im-select in windows
+			default_command = "im-select",
 
 			-- Restore the default input method state when the following events are triggered
 			-- "VimEnter" and "FocusGained" were removed for causing problems, add it by your needs
