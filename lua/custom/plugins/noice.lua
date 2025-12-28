@@ -52,6 +52,21 @@ return {
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
 				lsp_doc_border = true, -- add a border to hover docs and signature help
 			},
+			routes = {
+				{
+					filter = {
+						event = "msg_show",
+						any = {
+							{ find = "%d fewer lines" },
+							{ find = "%d more lines" },
+							{ find = "%d lines <ed %d time[s]?" },
+							{ find = "%d lines >ed %d time[s]?" },
+							{ find = "%d lines yanked" },
+						},
+					},
+					view = "mini",
+				},
+			},
 		})
 		vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "[N]oice [D]ismiss" })
 	end,
