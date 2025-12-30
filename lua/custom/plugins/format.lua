@@ -54,7 +54,7 @@ return { -- Autoformat
 			formatters = {
 				clang_format = {
 					command = "clang-format",
-					args = { "--style={BasedOnStyle: WebKit, IndentWidth: 4}" },
+					args = { "--style={BasedOnStyle: WebKit, IndentWidth: 4, PointerAlignment: Right}" },
 					stdin = true,
 				},
 				djlint = {
