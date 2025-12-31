@@ -62,3 +62,5 @@ opt.isfname:append("@-@") -- Allow @ in filename
 
 vim.o.list = false
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+vim.g.c_syntax_for_h = 1 -- Enable c syntax for h files

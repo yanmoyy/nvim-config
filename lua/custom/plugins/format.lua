@@ -53,16 +53,15 @@ return { -- Autoformat
 			},
 			formatters = {
 				clang_format = {
-					command = "clang-format",
-					args = { "--style={BasedOnStyle: WebKit, IndentWidth: 4, PointerAlignment: Right}" },
-					stdin = true,
+					prepend_args = {
+						"--style={BasedOnStyle: WebKit, IndentWidth: 4, PointerAlignment: Right, AlignTrailingComments: true, InsertBraces: true}",
+					},
 				},
 				djlint = {
 					prepend_args = {
 						"--line-break-after-multiline-tag",
 						"--max-blank-lines=1",
 					},
-					stdin = true,
 				},
 				prettierd = {
 					prepend_args = function(_, ctx)
@@ -80,8 +79,7 @@ return { -- Autoformat
 					stdin = true,
 				},
 				sql_formatter = {
-					command = "sql-formatter",
-					args = function()
+					prepend_args = function()
 						local config = {
 							language = "postgresql",
 							keywordCase = "upper",
@@ -96,7 +94,7 @@ return { -- Autoformat
 				},
 				go_mod_formatter = {
 					command = "go",
-					args = function(_, ctx)
+					prepend_args = function(_, ctx)
 						return { "mod", "edit", "-fmt", ctx.filename }
 					end,
 					-- Since go mod edit -fmt modifies the file directly, no stdin/stdout
