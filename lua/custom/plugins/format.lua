@@ -15,7 +15,7 @@ return { -- Autoformat
 	config = function()
 		require("conform").setup({
 			format_on_save = function(bufnr)
-				local disable_filetypes = { cpp = true }
+				local disable_filetypes = { cpp = true, make = true }
 				if
 					vim.g.disable_autoformat
 					or vim.b[bufnr].disable_autoformat
