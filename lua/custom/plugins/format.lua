@@ -15,7 +15,7 @@ return { -- Autoformat
 	config = function()
 		require("conform").setup({
 			format_on_save = function(bufnr)
-				local disable_filetypes = { cpp = true, make = true }
+				local disable_filetypes = { cpp = true }
 				if
 					vim.g.disable_autoformat
 					or vim.b[bufnr].disable_autoformat
@@ -29,6 +29,7 @@ return { -- Autoformat
 			notify_on_error = false,
 			formatters_by_ft = {
 				c = { "clang_format" },
+				make = { "bake" },
 				cs = { "csharpier" },
 				csproj = { "csharpier" },
 				lua = { "stylua" },
