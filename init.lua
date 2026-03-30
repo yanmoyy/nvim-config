@@ -4,6 +4,7 @@ vim.g.maplocalleader = " "
 
 require("custom.core.filetype")
 require("custom.core.autocmds")
+require("custom.core.usercmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 ---@type table

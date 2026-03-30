@@ -15,7 +15,7 @@ return { -- Autoformat
 	config = function()
 		require("conform").setup({
 			format_on_save = function(bufnr)
-				local disable_filetypes = { cpp = true }
+				local disable_filetypes = { cpp = false }
 				if
 					vim.g.disable_autoformat
 					or vim.b[bufnr].disable_autoformat
@@ -29,6 +29,7 @@ return { -- Autoformat
 			notify_on_error = false,
 			formatters_by_ft = {
 				c = { "clang_format" },
+				cpp = { "clang_format" },
 				make = { "bake" },
 				cs = { "csharpier" },
 				csproj = { "csharpier" },
@@ -55,7 +56,14 @@ return { -- Autoformat
 			formatters = {
 				clang_format = {
 					prepend_args = {
-						"--style={BasedOnStyle: WebKit, IndentWidth: 4, PointerAlignment: Right, AlignTrailingComments: true, InsertBraces: true}",
+						"--style={ \
+                            BasedOnStyle: LLVM, \
+                            IndentWidth: 4, \
+                            ColumnLimit: 0, \
+                            PointerAlignment: Right, \
+                            BreakBeforeBraces: Allman, \
+                            BreakConstructorInitializers: BeforeComma \
+                        }",
 					},
 				},
 				djlint = {

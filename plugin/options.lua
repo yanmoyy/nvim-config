@@ -40,9 +40,11 @@ vim.cmd([[autocmd FileType * set formatoptions-=o]]) -- Don't have `o` add a com
 opt.wrap = true
 opt.linebreak = true
 
+vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 opt.more = false -- Disable --More-- prompt
 opt.foldmethod = "manual"
