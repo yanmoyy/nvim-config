@@ -1,6 +1,7 @@
 vim.filetype.add({
 	extension = {
 		env = "env",
+		odin = "odin",
 	},
 	pattern = {
 		-- github yaml

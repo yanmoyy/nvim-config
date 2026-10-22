@@ -23,6 +23,7 @@ return {
 			"vim",
 			"vimdoc",
 			"xml",
+			"odin",
 		}
 
 		require("nvim-treesitter").install(parsers)
