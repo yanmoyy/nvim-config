@@ -90,14 +90,18 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local servers = {
 			neocmake = {},
+			-- GAME — OLS defaults to checker-on-save; on-change needs recent `odin` (-overlay) on PATH.
+			ols = {
+				init_options = { enable_checker_on_change = true },
+			},
+
 			--WEB...
 			html = {},
 			cssls = {},
 			ts_ls = {},
 
 			clangd = {},
-			--C#...
-			roslyn = {},
+			rubocop = {},
 
 			--Good Times...
 			bashls = {},
@@ -165,6 +169,7 @@ return {
 		vim.list_extend(ensure_installed, {
 			"codelldb",
 			"mbake",
+			"rubyfmt",
 			"clang-format",
 			"csharpier",
 			"netcoredbg",
