@@ -171,8 +171,6 @@ return {
 			"mbake",
 			"rubyfmt",
 			"clang-format",
-			"csharpier",
-			"netcoredbg",
 			"stylua", -- Used to format Lua code
 			"sql-formatter",
 			"isort",

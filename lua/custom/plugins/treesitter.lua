@@ -22,7 +22,6 @@ return {
 			"query",
 			"vim",
 			"vimdoc",
-			"c_sharp",
 			"xml",
 		}
 
@@ -121,6 +120,5 @@ return {
 
 		-- set parser to env filetype
 		vim.treesitter.language.register("bash", "env")
-		vim.treesitter.language.register("xml", "csproj")
 	end,
 }

@@ -24,11 +24,6 @@ return {
 		-- Add your own debuggers here
 		"leoluz/nvim-dap-go",
 		"mfussenegger/nvim-dap-python",
-		"nicholasmata/nvim-dap-cs",
-		{
-			"Cliffback/netcoredbg-macOS-arm64.nvim",
-			cond = vim.uv.os_uname().sysname == "Darwin",
-		},
 	},
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
@@ -102,6 +97,7 @@ return {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"delve",
 				"python",
+				"codelldb",
 			},
 		})
 
@@ -166,12 +162,5 @@ return {
 			},
 		})
 		require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
-
-		-- if macOS, use netcoredbg-macOS-arm64
-		if vim.uv.os_uname().sysname == "Darwin" then
-			require("netcoredbg-macOS-arm64").setup()
-		else
-			require("dap-cs").setup()
-		end
 	end,
 }

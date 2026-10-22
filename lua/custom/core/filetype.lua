@@ -1,7 +1,6 @@
 vim.filetype.add({
 	extension = {
 		env = "env",
-		csproj = "csproj",
 	},
 	pattern = {
 		-- github yaml
