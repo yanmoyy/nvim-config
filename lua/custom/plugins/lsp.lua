@@ -107,12 +107,6 @@ return {
 			},
 		})
 
-		vim.filetype.add({
-			extension = {
-				gd = "gdscript",
-			},
-		})
-
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local servers = {
 

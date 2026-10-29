@@ -41,8 +41,27 @@ return {
 			end
 		end
 
-		-- The line is already indented. A suggestion that starts with spaces
-		-- is drawn after the cursor, which looks like the cursor jumped.
+		-- The model often writes the missing piece and then copies the text
+		-- already after the cursor. Drop that copied tail. `6` followed by
+		-- the existing `: Character = ...` is shown as `6`.
+		local function trim_echoed_tail(text, after)
+			if after == "" then
+				return text
+			end
+			local limit = math.min(#text, #after)
+			for len = limit, 1, -1 do
+				if text:sub(-len) == after:sub(1, len) then
+					if len == #after or len >= 2 then
+						return text:sub(1, #text - len)
+					end
+					return text
+				end
+			end
+			return text
+		end
+
+		-- A suggestion that is only indentation is drawn after the cursor,
+		-- which looks like the cursor jumped.
 		local show = ghost.show
 		function ghost.show(text, bufnr, cursor)
 			local current = vim.api.nvim_win_get_cursor(0)
@@ -52,8 +71,8 @@ return {
 			end
 			text = text:gsub("^\t+", ""):gsub("^  +", "")
 			local line = vim.api.nvim_buf_get_lines(bufnr, cursor[1] - 1, cursor[1], false)[1] or ""
-			local after = line:sub(cursor[2] + 1)
-			if text == "" or after:match("%S") then
+			text = trim_echoed_tail(text, line:sub(cursor[2] + 1))
+			if text == "" then
 				ghost.clear()
 				return
 			end

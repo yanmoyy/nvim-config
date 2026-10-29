@@ -35,6 +35,7 @@ return {
 		},
 		indent = {
 			enable = true,
+			-- Neovim's runtime indent/gdscript.vim indents after ':'.
 			disable = { "gdscript" },
 		},
 	},
