@@ -6,6 +6,9 @@ return {
 	build = ":TSUpdate",
 	opts = {
 		ensure_installed = {
+			"gdscript",
+			"godot_resource",
+			"gdshader",
 			"json",
 			"go",
 			"sql",
@@ -30,7 +33,10 @@ return {
 			enable = true,
 			additional_vim_regex_highlighting = { "markdown" },
 		},
-		indent = { enable = true },
+		indent = {
+			enable = true,
+			disable = { "gdscript" },
+		},
 	},
 	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)

@@ -8,6 +8,35 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gdscript",
+	callback = function()
+		vim.schedule(function()
+			if vim.bo.filetype ~= "gdscript" then
+				return
+			end
+			local lines = vim.api.nvim_buf_get_lines(0, 0, 80, false)
+			local uses_tabs = false
+			for _, line in ipairs(lines) do
+				if line:match("^\t") then
+					uses_tabs = true
+					break
+				end
+				if line:match("^ ") then
+					break
+				end
+			end
+			vim.bo.expandtab = not uses_tabs
+			vim.bo.tabstop = 4
+			vim.bo.shiftwidth = 4
+			vim.bo.softtabstop = 4
+			vim.bo.smartindent = false
+			vim.bo.cindent = false
+			vim.bo.indentexpr = "v:lua.require('custom.gdscript_indent').indent()"
+		end)
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown", "sql", "json", "jsonc", "yaml", "cmake" },
 	callback = function()
 		vim.opt_local.shiftwidth = 2

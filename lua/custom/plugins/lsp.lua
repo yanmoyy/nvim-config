@@ -20,6 +20,26 @@ return {
 		"saghen/blink.cmp",
 	},
 	config = function()
+		-- Godot's external editor sends files to this pipe. The LSP port does not do that.
+		-- Only a Neovim started inside a Godot project should own the pipe.
+		local godot_project = vim.fs.find({ "project.godot" }, { upward = true, type = "file" })[1]
+		if godot_project then
+			local godot_pipe = "/tmp/godot.pipe"
+			local owns_godot_pipe = false
+			for _, address in ipairs(vim.fn.serverlist()) do
+				if address == godot_pipe then
+					owns_godot_pipe = true
+					break
+				end
+			end
+			if not owns_godot_pipe then
+				if vim.uv.fs_stat(godot_pipe) then
+					vim.uv.fs_unlink(godot_pipe)
+				end
+				vim.fn.serverstart(godot_pipe)
+			end
+		end
+
 		require("mason").setup({
 			registries = {
 				"github:mason-org/mason-registry",
@@ -87,10 +107,18 @@ return {
 			},
 		})
 
+		vim.filetype.add({
+			extension = {
+				gd = "gdscript",
+			},
+		})
+
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local servers = {
-			neocmake = {},
-			-- GAME — OLS defaults to checker-on-save; on-change needs recent `odin` (-overlay) on PATH.
+
+			-- GAME —
+			-- Godot's editor is the language server. Open the project in Godot first.
+			gdscript = {},
 			ols = {
 				init_options = { enable_checker_on_change = true },
 			},
@@ -165,7 +193,9 @@ return {
 			},
 		}
 
-		local ensure_installed = vim.tbl_keys(servers or {})
+		local ensure_installed = vim.tbl_filter(function(name)
+			return name ~= "gdscript"
+		end, vim.tbl_keys(servers or {}))
 		vim.list_extend(ensure_installed, {
 			"codelldb",
 			"mbake",

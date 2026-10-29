@@ -5,6 +5,9 @@ return {
 		vim.keymap.set("n", "<leader>z", "<cmd>NoNeckPain<cr>", { noremap = true, desc = "[Z]en mode" })
 		require("no-neck-pain").setup({
 			width = 120,
+			autocmds = {
+				enableOnVimEnter = true,
+			},
 		})
 	end,
 }

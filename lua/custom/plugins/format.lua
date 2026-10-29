@@ -28,6 +28,7 @@ return { -- Autoformat
 			end,
 			notify_on_error = false,
 			formatters_by_ft = {
+				gdscript = { "gdscript-formatter" },
 				odin = { "odinfmt" },
 				ruby = { "rubyfmt" },
 				c = { "clang_format" },
