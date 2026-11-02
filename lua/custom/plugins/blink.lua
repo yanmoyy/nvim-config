@@ -41,12 +41,6 @@ return {
 		},
 
 		completion = {
-			accept = {
-				auto_brackets = {
-					enabled = true,
-					default_brackets = { "(", ")" },
-				},
-			},
 			menu = {
 				auto_show = true,
 				border = "rounded",
@@ -77,6 +71,23 @@ return {
 							return vim.fn.getcwd()
 						end,
 					},
+				},
+				lsp = {
+					transform_items = function(ctx, items)
+						local after = ctx.line:sub(ctx.cursor[2] + 1)
+						if not after:match("^%s*%(") then
+							return items
+						end
+						for _, item in ipairs(items) do
+							if item.insertText then
+								item.insertText = item.insertText:gsub("%b()", "", 1)
+							end
+							if item.textEdit and item.textEdit.newText then
+								item.textEdit.newText = item.textEdit.newText:gsub("%b()", "", 1)
+							end
+						end
+						return items
+					end,
 				},
 			},
 		},

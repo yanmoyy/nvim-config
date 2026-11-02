@@ -1,7 +1,7 @@
 return {
 	"maxpaulus43/llama-cmp.nvim",
 	opts = {
-		model = "qwen2.5-coder:0.5b-base",
+		model = "qwen2.5-coder:1.5b-base",
 		preset = "qwen",
 
 		auto_trigger = true,
@@ -16,7 +16,7 @@ return {
 			},
 		},
 		generation = {
-			max_tokens = 64,
+			max_tokens = 200,
 			temperature = 0.1,
 			stop = { "\n", "<|endoftext|>" },
 		},
