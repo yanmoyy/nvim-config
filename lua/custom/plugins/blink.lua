@@ -21,6 +21,19 @@ return {
 
 		keymap = {
 			preset = "default",
+			-- Prefer llama ghost accept; keep snippet jumps when no gray text.
+			["<Tab>"] = {
+				function()
+					local completion = require("llama-cmp.completion")
+					if completion.is_visible() and completion.accept() then
+						-- Accepting ghost text leaves the LSP snippet session open.
+						pcall(vim.snippet.stop)
+						return true
+					end
+				end,
+				"snippet_forward",
+				"fallback",
+			},
 		},
 
 		appearance = {
