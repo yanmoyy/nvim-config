@@ -124,6 +124,6 @@ return {
 			return true
 		end
 
-		vim.keymap.set("n", "<leader>lt", "<cmd>LlamaCmp toggle<cr>", { desc = "[L]lama [T]oggle" })
+		vim.keymap.set("n", "<leader>ti", "<cmd>LlamaCmp toggle<cr>", { desc = "[T]oggle [I]nline" })
 	end,
 }

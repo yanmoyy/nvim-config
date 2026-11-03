@@ -19,51 +19,51 @@ return {
 		local wk = require("which-key")
 		wk.add({
 			{
-				"<leader>ta",
+				"<leader>na",
 				function()
 					neotest.run.attach()
 				end,
-				desc = "[T]est [A]ttach",
+				desc = "[N]eotest [A]ttach",
 				mode = "n",
 			},
 			{
-				"<leader>tf",
+				"<leader>nf",
 				function()
 					neotest.run.run(vim.fn.expand("%"))
 				end,
-				desc = "[T]est [F]ile",
+				desc = "[N]eotest [F]ile",
 				mode = "n",
 			},
 			{
-				"<leader>tF",
+				"<leader>nF",
 				function()
 					neotest.run.run(vim.fn.getcwd())
 				end,
-				desc = "[T]est All [F]ile",
+				desc = "[N]eotest All [F]iles",
 				mode = "n",
 			},
 			{
-				"<leader>tl",
+				"<leader>nl",
 				function()
 					neotest.run.run_last()
 				end,
-				desc = "[T]est [L]ast",
+				desc = "[N]eotest [L]ast",
 				mode = "n",
 			},
 			{
-				"<leader>ts",
+				"<leader>ns",
 				function()
 					neotest.summary.toggle()
 				end,
-				desc = "[T]est [S]ummary",
+				desc = "[N]eotest [S]ummary",
 				mode = "n",
 			},
 			{
-				"<leader>tx",
+				"<leader>nx",
 				function()
 					neotest.run.stop()
 				end,
-				desc = "[T]est [X]stop",
+				desc = "[N]eotest [X]stop",
 				mode = "n",
 			},
 		})

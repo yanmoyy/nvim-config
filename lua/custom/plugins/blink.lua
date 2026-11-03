@@ -21,12 +21,10 @@ return {
 
 		keymap = {
 			preset = "default",
-			-- Prefer llama ghost accept; keep snippet jumps when no gray text.
 			["<Tab>"] = {
 				function()
 					local completion = require("llama-cmp.completion")
 					if completion.is_visible() and completion.accept() then
-						-- Accepting ghost text leaves the LSP snippet session open.
 						pcall(vim.snippet.stop)
 						return true
 					end
@@ -45,8 +43,7 @@ return {
 		signature = {
 			enabled = true,
 			trigger = {
-				enabled = true,
-				show_on_insert = true,
+				enabled = false,
 			},
 			window = {
 				border = "rounded",
@@ -55,7 +52,9 @@ return {
 
 		completion = {
 			menu = {
-				auto_show = true,
+				auto_show = function()
+					return vim.g.blink_completion ~= false
+				end,
 				border = "rounded",
 				scrollbar = false,
 				-- nvim-cmp style menu
@@ -72,9 +71,19 @@ return {
 			},
 		},
 		sources = {
-			default = { "lsp", "snippets", "path", "dadbod", "buffer" },
+			default = function()
+				if vim.g.blink_completion == false then
+					return {}
+				end
+				return { "lsp", "snippets", "path", "dadbod", "buffer" }
+			end,
 			per_filetype = {
-				sql = { "dadbod", "snippets", "buffer" },
+				sql = function()
+					if vim.g.blink_completion == false then
+						return {}
+					end
+					return { "dadbod", "snippets", "buffer" }
+				end,
 			},
 			providers = {
 				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
@@ -119,4 +128,19 @@ return {
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
 	opts_extend = { "sources.default" },
+	keys = {
+		{
+			"<leader>tc",
+			function()
+				vim.g.blink_completion = vim.g.blink_completion == false
+				if vim.g.blink_completion == false then
+					pcall(require("blink.cmp").hide)
+					vim.notify("Completion off", vim.log.levels.INFO)
+				else
+					vim.notify("Completion on", vim.log.levels.INFO)
+				end
+			end,
+			desc = "[T]oggle [C]ompletion",
+		},
+	},
 }
